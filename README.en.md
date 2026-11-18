@@ -5,7 +5,7 @@
 A DeepSeek Harness plugin: adds a one-click button to the composer tool row, left of the model seat, that forges the current draft into a clear, boundary-aware prompt you can send as-is.
 
 - Package: `@cyberpzy/dsh-prompt-smith`
-- Version: `1.0.0`
+- Version: `1.0.1`
 - Internal identity: `prompt-smith` (config row id, module name, locale namespace, slot ids)
 - Repository: <https://github.com/CyberPzy/dsh-prompt-smith>
 
@@ -48,7 +48,7 @@ dsh plugin --profile desktop add github:CyberPzy/dsh-prompt-smith
 Pin a version:
 
 ```bash
-dsh plugin --profile desktop add github:CyberPzy/dsh-prompt-smith#v1.0.0
+dsh plugin --profile desktop add github:CyberPzy/dsh-prompt-smith#v1.0.1
 ```
 
 Uninstall:
@@ -189,7 +189,7 @@ Confirm `--profile` names the profile you actually run; check install state with
 The provider rejects that combination. Pick another level or model; polishing itself retries once without the effort field when it hits the same rejection.
 
 **Install returns 404 / permission denied.**
-Confirm the repository and tag spelling (`github:CyberPzy/dsh-prompt-smith`, pin with `#v1.0.0`); the repository is public and needs no credentials.
+Confirm the repository and tag spelling (`github:CyberPzy/dsh-prompt-smith`, pin with `#v1.0.1`); the repository is public and needs no credentials.
 
 **Does enhancing pollute the session?**
 No. It is an isolated one-shot call: nothing is written to the session log and no model-visible message is produced.

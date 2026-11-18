@@ -5,7 +5,7 @@
 DeepSeek Harness 插件：在输入框工具行、模型选择器左侧加一个一键按钮，把当前草稿锻造成一条结构清晰、边界完整、可直接发送的提示词。
 
 - 包名：`@cyberpzy/dsh-prompt-smith`
-- 版本：`1.0.0`
+- 版本：`1.0.1`
 - 内部标识：`prompt-smith`（配置行 id、模块名、locale 命名空间、槽位 id）
 - 仓库：<https://github.com/CyberPzy/dsh-prompt-smith>
 
@@ -48,7 +48,7 @@ dsh plugin --profile desktop add github:CyberPzy/dsh-prompt-smith
 锁定版本：
 
 ```bash
-dsh plugin --profile desktop add github:CyberPzy/dsh-prompt-smith#v1.0.0
+dsh plugin --profile desktop add github:CyberPzy/dsh-prompt-smith#v1.0.1
 ```
 
 卸载：
@@ -189,7 +189,7 @@ dsh plugin --profile desktop add link:C:\path\to\dsh-prompt-smith
 该组合不被供应商接受。换档位或换模型；润色本身遇到同类拒绝会自动去掉强度字段重试一次。
 
 **安装报 404 / 无权限？**
-确认仓库名、tag 拼写无误（`github:CyberPzy/dsh-prompt-smith`，锁版加 `#v1.0.0`）；本仓库为公开仓库，无需凭据。
+确认仓库名、tag 拼写无误（`github:CyberPzy/dsh-prompt-smith`，锁版加 `#v1.0.1`）；本仓库为公开仓库，无需凭据。
 
 **点击增强会不会污染会话？**
 不会。这是一次独立的一次性调用，不写入会话日志、不产生模型可见消息。

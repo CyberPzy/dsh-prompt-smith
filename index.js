@@ -104,7 +104,9 @@ function publicConfig() {
 
 /**
  * Resolve the model route for one polish request: explicit runtime values,
- * else a deepseek-class provider + flash-class model, else the first entry.
+ * else walk candidates — deepseek-class providers first, then the rest —
+ * skipping providers that expose no models, and take the first usable one.
+ * Within the chosen provider, prefer a flash-class model, else the first entry.
  */
 async function resolveRoute(ctx) {
   const providers = ctx.llm.listProviders()
@@ -112,12 +114,30 @@ async function resolveRoute(ctx) {
     (entry && (entry.id || entry.provider || entry.name)) || '',
   )).filter(Boolean)
 
-  const provider = runtime.provider || names.find(name => /deepseek/i.test(name)) || names[0]
-  if (!provider) throw new Error('没有可用的模型供应商')
+  const candidates = runtime.provider
+    ? [runtime.provider]
+    : [
+        ...names.filter(name => /deepseek/i.test(name)),
+        ...names.filter(name => !/deepseek/i.test(name)),
+      ]
+  if (candidates.length === 0) throw new Error('没有可用的模型供应商')
 
-  const models = await ctx.llm.listModels(provider)
-  const modelIds = models.map(entry => String((entry && (entry.id || entry.name)) || '')).filter(Boolean)
-  const model = runtime.model || modelIds.find(id => /flash/i.test(id)) || modelIds[0]
+  let provider = ''
+  let model = ''
+  for (const candidate of candidates) {
+    let modelIds = []
+    try {
+      const models = await ctx.llm.listModels(candidate)
+      modelIds = models.map(entry => String((entry && (entry.id || entry.name)) || '')).filter(Boolean)
+    } catch (error) {
+      modelIds = []
+    }
+    if (modelIds.length === 0) continue
+    provider = candidate
+    model = runtime.model || modelIds.find(id => /flash/i.test(id)) || modelIds[0]
+    break
+  }
+  if (!provider) throw new Error('没有可用的模型供应商')
   if (!model) throw new Error('供应商没有可用的模型')
 
   let reasoningEffort
@@ -207,20 +227,36 @@ async function resolveNamedRoute(ctx, providerRaw, modelRaw) {
     (entry && (entry.id || entry.provider || entry.name)) || '',
   )).filter(Boolean)
 
-  let provider = providerRaw || names.find(name => /deepseek/i.test(name)) || names[0] || ''
-  let model = modelRaw || ''
-
-  if (provider && !model) {
-    try {
-      const models = await ctx.llm.listModels(provider)
-      const ids = models.map(entry => String((entry && (entry.id || entry.name)) || '')).filter(Boolean)
-      model = ids.find(id => /flash/i.test(id)) || ids[0] || ''
-    } catch (error) {
-      model = ''
+  if (providerRaw) {
+    let model = modelRaw || ''
+    if (!model) {
+      try {
+        const models = await ctx.llm.listModels(providerRaw)
+        const ids = models.map(entry => String((entry && (entry.id || entry.name)) || '')).filter(Boolean)
+        model = ids.find(id => /flash/i.test(id)) || ids[0] || ''
+      } catch (error) {
+        model = ''
+      }
     }
+    return { provider: providerRaw, model }
   }
 
-  return { provider, model }
+  const candidates = [
+    ...names.filter(name => /deepseek/i.test(name)),
+    ...names.filter(name => !/deepseek/i.test(name)),
+  ]
+  for (const candidate of candidates) {
+    let ids = []
+    try {
+      const models = await ctx.llm.listModels(candidate)
+      ids = models.map(entry => String((entry && (entry.id || entry.name)) || '')).filter(Boolean)
+    } catch (error) {
+      ids = []
+    }
+    if (ids.length === 0) continue
+    return { provider: candidate, model: modelRaw || ids.find(id => /flash/i.test(id)) || ids[0] }
+  }
+  return { provider: '', model: '' }
 }
 
 /** Advertised efforts for one route; falls back to the common vocabulary. */

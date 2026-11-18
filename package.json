@@ -1,6 +1,6 @@
 {
   "name": "@cyberpzy/dsh-prompt-smith",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "description": "One-click prompt polish next to the composer model seat, served by the profile's DeepSeek route.",
   "license": "MIT",
