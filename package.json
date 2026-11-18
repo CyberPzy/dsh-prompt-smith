@@ -1,0 +1,54 @@
+{
+  "name": "@cyberpzy/dsh-prompt-smith",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "One-click prompt polish next to the composer model seat, served by the profile's DeepSeek route.",
+  "license": "MIT",
+  "author": "pzy",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "prompt",
+    "prompt-engineering"
+  ],
+  "homepage": "https://github.com/CyberPzy/dsh-prompt-smith#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CyberPzy/dsh-prompt-smith.git"
+  },
+  "dshTarget": "0.2.2-rc.3",
+  "scripts": {
+    "pack:plugin": "node scripts/pack.mjs"
+  },
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "docs",
+    "icon.svg",
+    "README.md",
+    "README.en.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-conversation"
+      ]
+    }
+  }
+}

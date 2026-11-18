@@ -1,0 +1,7 @@
+{
+  "meta": {
+    "title": "Prompt enhancer",
+    "description": "Adds a sparkle button left of the model seat: one click rewrites the current draft into a clearer, sendable prompt and writes it back into the composer. Model, reasoning effort and the built-in prompt are configurable in Settings.",
+    "detail": "docs/DETAIL.md"
+  }
+}

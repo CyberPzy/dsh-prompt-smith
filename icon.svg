@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Prompt enhancer">
+  <rect x="2" y="2" width="60" height="60" rx="14" fill="#1F6FEB"/>
+  <path d="M32 12l6.4 13.6L52 32l-13.6 6.4L32 52l-6.4-13.6L12 32l13.6-6.4z" fill="#FFFFFF"/>
+  <path d="M48 40l2.6 5.4L56 48l-5.4 2.6L48 56l-2.6-5.4L40 48l5.4-2.6z" fill="#FFD166"/>
+</svg>

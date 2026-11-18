@@ -1,0 +1,7 @@
+- insert:
+    - id: prompt-smith
+      name: '@cyberpzy/dsh-prompt-smith'
+      config:
+        maxChars: 6000
+        temperature: 0.3
+        maxTokens: 1200
