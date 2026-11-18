@@ -23,7 +23,7 @@
 
 设置页或补丁行里配置的 `provider` / `model` / `reasoningEffort` / `temperature` / `maxTokens` / `maxChars` 优先；留空或 `auto` 时按以下规则解析：
 
-- 供应商：优先取模型目录里 id 含 `deepseek` 的路由（当前 profile 即官方账号通道）；没有时退回第一个可用供应商。
+- 供应商：优先取模型目录里 id 含 `deepseek` 的路由；没有时退回第一个可用供应商（目录按当前机器实时枚举，不同机器解析结果不同）。
 - 模型：优先取 id 含 `flash` 的模型，否则取该供应商的第一个模型。
 - 思考强度：`auto` 取该模型声明的最低档（`reasoning.efforts[0]`），不写死档位 id；路由拒绝所选档位时自动去掉该字段重试一次。
 - 采样参数：默认 `temperature 0.3`、`maxTokens 1200`。

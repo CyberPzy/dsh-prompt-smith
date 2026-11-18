@@ -156,8 +156,8 @@ dsh plugin --profile desktop add link:C:\path\to\dsh-prompt-smith
 {
   "ok": true,
   "text": "<改写后的提示词>",
-  "provider": "deepseek-official",
-  "model": "deepseek-flash",
+  "provider": "<自动解析到的本机供应商>",
+  "model": "<自动解析到的本机模型>",
   "reasoningEffort": "off"
 }
 ```
@@ -166,7 +166,7 @@ dsh plugin --profile desktop add link:C:\path\to\dsh-prompt-smith
 
 ### `GET /dsh-prompt-smith/settings`
 
-返回 `{ ok, config, defaults, models }`：当前生效配置、默认值（`defaults.prompt` 为内置提示词全文）、模型目录（按供应商分组，60 秒缓存）。
+返回 `{ ok, config, defaults, models }`：当前生效配置、默认值（`defaults.prompt` 为内置提示词全文）、模型目录（按供应商分组，60 秒缓存）。`models` 通过宿主 `ctx.llm.listProviders()` / `listModels()` 实时枚举**当前机器**的供应商与模型——每台电脑看到各自本机的供应商，插件不分发、不内置任何供应商名单。
 
 ### `POST /dsh-prompt-smith/settings`
 

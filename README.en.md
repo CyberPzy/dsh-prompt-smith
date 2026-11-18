@@ -156,8 +156,8 @@ Success `200`:
 {
   "ok": true,
   "text": "<rewritten prompt>",
-  "provider": "deepseek-official",
-  "model": "deepseek-flash",
+  "provider": "<provider auto-resolved on this machine>",
+  "model": "<model auto-resolved on this machine>",
   "reasoningEffort": "off"
 }
 ```
@@ -166,7 +166,7 @@ Failures: `400 EMPTY_DRAFT` (empty draft), `400 TOO_LONG` (exceeds `maxChars`), 
 
 ### `GET /dsh-prompt-smith/settings`
 
-Returns `{ ok, config, defaults, models }`: the effective config, the defaults (`defaults.prompt` is the full built-in prompt), and the model catalog grouped by provider (60-second cache).
+Returns `{ ok, config, defaults, models }`: the effective config, the defaults (`defaults.prompt` is the full built-in prompt), and the model catalog grouped by provider (60-second cache). `models` is enumerated live from the host's `ctx.llm.listProviders()` / `listModels()` on **the current machine** — every machine sees its own local providers; the plugin ships no provider list of any kind.
 
 ### `POST /dsh-prompt-smith/settings`
 
