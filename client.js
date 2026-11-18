@@ -840,7 +840,7 @@ window.__ModuleLoader__.load({
               },
                 testGlyph,
                 h('span', null, testLabel))),
-            testState === 'fail' && testError
+            testError
               ? h('div', { className: 'pes-testError', role: 'alert' },
                 h(TestCross, {}),
                 h('span', null, testError))

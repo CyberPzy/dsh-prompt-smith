@@ -21,6 +21,8 @@
 export const name = 'prompt-smith'
 export const inject = ['llm']
 
+import { randomUUID } from 'node:crypto'
+
 const ENHANCE_PATH = '/dsh-prompt-smith/enhance'
 const SETTINGS_PATH = '/dsh-prompt-smith/settings'
 const EFFORTS_PATH = '/dsh-prompt-smith/efforts'
@@ -171,6 +173,10 @@ async function callOnce(ctx, route, draft, signal) {
     ],
     temperature: Number(runtime.temperature),
     maxTokens: Number(runtime.maxTokens),
+    // One-shot calls have no conversation to borrow a session id from; the
+    // synthetic id lets providers that route per session (opencode-go adds
+    // the x-opencode-session header from it) accept the request at all.
+    sessionId: randomUUID(),
     signal,
   }
   if (route.reasoningEffort) options.reasoningEffort = route.reasoningEffort
@@ -304,6 +310,7 @@ async function testRoute(ctx, providerRaw, modelRaw, effortRaw, signal) {
     messages: [{ role: 'user', content: [{ type: 'text', text: 'ping' }] }],
     temperature: 0,
     maxTokens: 16,
+    sessionId: randomUUID(),
     signal,
   }
   if (reasoningEffort) options.reasoningEffort = reasoningEffort
