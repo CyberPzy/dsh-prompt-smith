@@ -7,7 +7,7 @@ A DeepSeek Harness plugin: adds a one-click button to the composer tool row, lef
 - Package: `@cyberpzy/dsh-prompt-smith`
 - Version: `1.0.0`
 - Internal identity: `prompt-smith` (config row id, module name, locale namespace, slot ids)
-- Repository: <https://github.com/CyberPzy/dsh-prompt-smith> (currently **private**)
+- Repository: <https://github.com/CyberPzy/dsh-prompt-smith>
 
 ## Features
 
@@ -28,7 +28,7 @@ Prerequisites:
 | Host | DeepSeek Harness ≥ `0.2.2-rc.3` (manifest field `dshTarget`) |
 | Profile | Has the `llm` service and at least one model provider adapter; profile with a web layer |
 | CLI | `dsh` command (bundled with Harness; the GUI build ships it at `resources\runtime\cli\bin`) |
-| Network | The repository is private, so the installing machine needs GitHub read access (`gh auth login` or a configured git credential helper) |
+| Network | No special requirement; the repository is public and installs directly |
 
 ```bash
 dsh plugin --profile desktop add github:CyberPzy/dsh-prompt-smith
@@ -36,7 +36,6 @@ dsh plugin --profile desktop add github:CyberPzy/dsh-prompt-smith
 
 - Replace `desktop` with the profile you actually run.
 - Restart the app (or `dsh web`) after installing, then `Ctrl+R` in the browser.
-- Once the repository is public, the same command works on any machine without credentials.
 
 Upgrade (re-running the same command pulls the latest default branch):
 
@@ -189,8 +188,8 @@ Confirm `--profile` names the profile you actually run; check install state with
 **The test reports "该模型不支持所选思考强度（xxx）".**
 The provider rejects that combination. Pick another level or model; polishing itself retries once without the effort field when it hits the same rejection.
 
-**Private-repository install returns 404 / permission denied.**
-Run `gh auth login` on the installing machine, or configure a git credential helper; the issue disappears once the repository is public.
+**Install returns 404 / permission denied.**
+Confirm the repository and tag spelling (`github:CyberPzy/dsh-prompt-smith`, pin with `#v1.0.0`); the repository is public and needs no credentials.
 
 **Does enhancing pollute the session?**
 No. It is an isolated one-shot call: nothing is written to the session log and no model-visible message is produced.

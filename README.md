@@ -7,7 +7,7 @@ DeepSeek Harness 插件：在输入框工具行、模型选择器左侧加一个
 - 包名：`@cyberpzy/dsh-prompt-smith`
 - 版本：`1.0.0`
 - 内部标识：`prompt-smith`（配置行 id、模块名、locale 命名空间、槽位 id）
-- 仓库：<https://github.com/CyberPzy/dsh-prompt-smith>（当前为 **private**）
+- 仓库：<https://github.com/CyberPzy/dsh-prompt-smith>
 
 ## 功能特性
 
@@ -28,7 +28,7 @@ DeepSeek Harness 插件：在输入框工具行、模型选择器左侧加一个
 | 宿主 | DeepSeek Harness ≥ `0.2.2-rc.3`（清单字段 `dshTarget`） |
 | profile | 挂有 `llm` 服务与至少一个模型供应商适配器；带 Web 层的 profile |
 | CLI | `dsh` 命令（Harness 自带，GUI 版位于安装目录 `resources\runtime\cli\bin`） |
-| 网络 | 本仓库当前为 private，安装机需 GitHub 读权限（`gh auth login` 或已登录的 git credential helper） |
+| 网络 | 无特殊要求，公开仓库直接安装 |
 
 ```bash
 dsh plugin --profile desktop add github:CyberPzy/dsh-prompt-smith
@@ -36,7 +36,6 @@ dsh plugin --profile desktop add github:CyberPzy/dsh-prompt-smith
 
 - `desktop` 替换为你实际在跑的 profile 名。
 - 装完重启应用（或重启 `dsh web`），浏览器 `Ctrl+R` 刷新页面。
-- 仓库转公开后，任何机器无需凭据即可用同一条命令安装。
 
 升级（重复执行同一命令即拉到默认分支最新版）：
 
@@ -189,8 +188,8 @@ dsh plugin --profile desktop add link:C:\path\to\dsh-prompt-smith
 **测试报「该模型不支持所选思考强度（xxx）」？**
 该组合不被供应商接受。换档位或换模型；润色本身遇到同类拒绝会自动去掉强度字段重试一次。
 
-**私有仓库安装报 404 / 无权限？**
-安装机执行 `gh auth login`，或配好 git credential helper；仓库转公开后此问题消失。
+**安装报 404 / 无权限？**
+确认仓库名、tag 拼写无误（`github:CyberPzy/dsh-prompt-smith`，锁版加 `#v1.0.0`）；本仓库为公开仓库，无需凭据。
 
 **点击增强会不会污染会话？**
 不会。这是一次独立的一次性调用，不写入会话日志、不产生模型可见消息。
