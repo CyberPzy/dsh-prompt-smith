@@ -219,5 +219,3 @@ MIT，Copyright (c) 2026 pzy。见 [LICENSE](./LICENSE)。
 2. 改动 `index.js` / `client.js` 后先做语法检查：`node --check index.js && node --check client.js`。
 3. 同步更新 `CHANGELOG.md` 与 `package.json` 版本号，然后执行 `npm run pack:plugin` 验证打包（版本不一致会直接失败）。
 4. 提 PR，说明改动点与验证方式。
-
-未决事项（待维护者补充）：贡献者行为准则、Issue / PR 模板、CI 配置、联系方式 `<TODO: contact>`。

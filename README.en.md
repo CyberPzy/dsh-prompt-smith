@@ -219,5 +219,3 @@ MIT, Copyright (c) 2026 pzy. See [LICENSE](./LICENSE).
 2. After changing `index.js` / `client.js`, run the syntax check: `node --check index.js && node --check client.js`.
 3. Update `CHANGELOG.md` and the `package.json` version together, then run `npm run pack:plugin` to verify packaging (a version mismatch fails immediately).
 4. Open a PR describing the change and how you verified it.
-
-Open items (maintainer to fill in): code of conduct, issue / PR templates, CI configuration, contact `<TODO: contact>`.
